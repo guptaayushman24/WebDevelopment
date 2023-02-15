@@ -1,10 +1,92 @@
-{
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"liveServer.settings.port": 5501
-	}
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template-1</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        h1{
+             margin-left: 20px;
+             color: aqua;
+        }
+        h2{
+            color: gold;
+            margin-left: 20px;
+        }
+
+        p{
+            margin-left: 20px;
+        }
+        .b1{
+            margin-left: 100px;
+            margin-left: 20px;
+            margin-top: 50px;
+            background-color: greenyellow;
+            height: 40px;
+            width: 200px;
+
+
+        }
+        #h-2{
+           color: white;
+        }
+        .div-1{
+            background-color: aqua;
+            border: 2px solid white;
+            height: 280px;
+            width: 49%;
+            float: left;
+
+
+
+        }
+        .div-2{
+            background-color: aqua;
+            border: 2px solid white;
+            height: 280px;
+            width: 49%;
+            float: left;
+
+
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+
+    <h1>Join our community</h1>
+<h2>30-day,hassle-free money back guarantee</h2>
+
+<p>Gain access top our full library of tutorials along with expert code reviews<br>
+Perfect for any developers who are serious about honing their skills</p>
+
+
+
+    <div class="div-1">
+        <h2>Monthly Subscription</h2>
+        <p>$29 per month</p>
+        <p>Full access for less than $1 a day</p>
+
+        <button class="b1">Sign Up</button>
+       </div>
+    <div class="div-2">
+        <h2 id="h-2">Why Us</h2>
+        <p>Tutorials by industry experts<br>
+        Peer & expert code review<br>
+        Coding exercises<br>
+        Access to our Github repos<br>
+        Community forum<br>
+        Flashcard decks<br>
+        New videos every week</p>
+    </div>
+
+</body>
+</html>
