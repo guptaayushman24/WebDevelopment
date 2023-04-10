@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation using JQuey</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .form {
+            margin: 50px;
+            padding: 50px;
+            border: 2px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="form">
+        <center>
+            <h1>Registration Form</h1>
+        </center>
+        <center>
+            <form action="/01Angular.html">
+                <div style="margin: 10px;">
+                    Name: <input type="text" id="name1"><span style="color: red;" id="spanname"></span><br>
+                </div>
+                <div style="margin: 10px;">
+                    Password: <input type="password" id="pass"><span style="color: red;" id="spanpass"></span>
+                </div>
+                <div style="margin: 10px;">
+                    Confirm Password: <input type="password" id="cpass"><span style="color: red;" id="spancpass"></span>
+                </div>
+                <div style="margin: 10px;">
+                    Email: <input type="text" id="email"><span style="color: red;" id="spanemail"></span>
+                </div>
+                <div style="margin: 10px;">
+                    Phone Number:<input type="number" id="pnumber"><span style="color: red;" id="spanpnumber"></span>
+                </div>
+
+                <div style="margin: 10px;">
+                    Pin Code: <input type="number" id="pcnumber"><span style="color: red;" id="spanpcnumber"></span>
+                </div>
+                <div style="margin: 10px;">
+                    <p> Please select the geneder</p>
+                    <input type="radio" id="male" name="Gender">
+                    <label>Male</label>
+                    <input type="radio" id="female" name="Gender">
+                    <label>Female</label><span style="color: red;" id="spangender"></span>
+
+                </div>
+                <div style="margin: 10px;">
+                    <p>Please select from the checkbox</p>
+                    <input type="checkbox" id="red" name="checkbox">
+                    <label>Red</label>
+                    <input type="checkbox" id="green" name="checkbox">
+                    <label>Green</label>
+                    <input type="checkbox" id="blue" name="checkbox">
+                    <label>Blue</label><span style="color: red;" id="spancolor"></span>
+                </div>
+
+                <div style="margin: 10px;">
+                    <p>Write Something about your achivements</p>
+                    <textarea id="tarea" rows="4" cols="50"></textarea><span id="tareaspan" style="color: red;"></span>
+                </div>
+
+                <input type="submit" value="Submit">
+            </form>
+        </center>
+    </div>
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('span').hide();
+        $('input[type="submit"]').click(function (event) {
+            // Validation for the name
+            var name = $('#name1').val();
+            if (name.length < 5 || /\d/.test(name)) {
+                $('#spanname').text("*Please enter a valid name");
+                $('#spanname').show();
+                event.preventDefault();
+            } else {
+                $('#spanname').hide();
+            }
+
+            // Validation for the password
+            var password = $('#pass').val();
+            var regex = /^[0-9a-zA-Z]+$/;
+            if (password.length < 5) {
+                $('#spanpass').text("*Password length is too short");
+                $('#spanpass').show();
+                event.preventDefault();
+            } else if (!(regex.test(password))) {
+                $('#spanpass').text("*Password is not alphanumeric");
+                $('#spanpass').show();
+                event.preventDefault();
+            } else {
+                $('#spanpass').hide();
+            }
+
+            // Validation of the confirm password
+            var cpassword = $('#cpass').val();
+            if (cpassword.length == 0) {
+                $('#spancpass').text("*Please enter the password for confirmation");
+                $('#spancpass').show();
+                event.preventDefault();
+            }
+            else if (password != cpassword) {
+                $('#spancpass').text("*Password and Confirm Pasword not matched");
+                $('#spancpass').show();
+                event.preventDefault();
+            }
+            else {
+                $('#spancpass').hide();
+            }
+
+            // Validation for the email
+            var email = $('#email').val();
+            if (email.length == 0) {
+                $('#spanemail').text("*Please enter the email address");
+                $('#spanemail').show();
+                event.preventDefault();
+            }
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                $('#spanemail').text("*Please enter the correct email address");
+                $('#spanemail').show();
+                event.preventDefault();
+            }
+
+            else {
+                $('#spanemail').hide();
+            }
+            // Validating for the phone number
+            var number = $('#pnumber').val();
+
+            if (number.length == 0) {
+                $('#spanpnumber').text("*Phone number is required");
+                $('#spanpnumber').show();
+                event.preventDefault();
+            }
+            else if (number.length < 10) {
+                $('#spanpnumber').text("*Length of phone number is too short");
+                $('#spanpnumber').show();
+                event.preventDefault();
+            }
+            else if (number.length > 10) {
+                $('#spanpnumber').text("*Length of phone number is too long");
+                $('#spanpnumber').show();
+                event.preventDefault();
+            }
+            else {
+                $('#spanpnumber').hide();
+            }
+
+
+            // Validating the pin number
+            var pinnumber = $('#pcnumber').val();
+            if (pinnumber.length == 0) {
+                $('#spanpcnumber').text("*Please enter the pin number");
+                $('#spanpcnumber').show();
+                event.preventDefault();
+            }
+            if (pinnumber.length < 6) {
+                $('#spanpcnumber').text("*Length of pinnumber is too short");
+                $('#spanpcnumber').show();
+                event.preventDefault();
+
+            }
+            else if (pinnumber.length > 6) {
+                $('#spanpcnumber').text("*Length of pinnumber is too long");
+                $('#spanpcnumber').show();
+                event.preventDefault();
+            }
+            else {
+                $('#spanpcnumber').hide();
+            }
+
+            // Validating the radio button
+            if ($('input[name="Gender"]:checked').length == 0) {
+                $('#spangender').text("*Please select a gender");
+                $('#spangender').show();
+                event.preventDefault();
+            }
+            else {
+                $('#spangender').hide();
+            }
+            // Validation for the checkbox
+
+            if ($('input[name="checkbox"]:checked').length == 0) {
+                $('#spancolor').text("*Please select atleast one checkbox");
+                $('#spancolor').show();
+                event.preventDefault();
+            }
+            else {
+                $('#spancolor').hide();
+            }
+            // Validation for the textbox
+            var textarea = $('#tarea').val();
+            if (textarea.length == 0) {
+                $('#tareaspan').text("*Please write somethong in the textbox");
+                $('#tareaspan').show();
+            }
+            else if (textarea.length < 10) {
+                $('#tareaspan').text("*Please write more in the text area");
+                $('#tareaspan').show();
+            }
+            else {
+                $('#tareaspan').hide();
+            }
+
+
+        });
+    });
+</script>
+
+
+</html>
