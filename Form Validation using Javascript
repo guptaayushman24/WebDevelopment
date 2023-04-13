@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation with JavaScript</title>
+</head>
+<style>
+    .error {
+        color: red;
+    }
+
+    .fdiv {
+        margin: 10px;
+
+    }
+</style>
+
+<body>
+    <div class="fdiv"></div>
+    <center>
+
+        <form action="01Angular.html" id="myForm">
+
+            Name:<input type="text" id="name"><span class="error" id="namespan"></span><br>
+            </div>
+            <div>
+                Password:<input type="password" id="pass" style="margin: 10px;"><span class="error"
+                    id="passspan"></span>
+            </div>
+            <div>
+                Confirm Password:<input type="password" id="cpass" style="margin: 10px;"><span class="error"
+                    id="spancpass"></span>
+            </div>
+
+            <div>
+                Email: <input type="text" id="email" style="margin: 10px;"><span class="error" id="spanemail"></span>
+            </div>
+            <div>
+                Pin Code: <input type="number" id="picode" style="margin: 10px;"><span class="error"
+                    id="spanpicode"></span>
+            </div>
+            <div>
+                <p>Please select the radio button</p><span class="error" id="spanradio"></span>
+                <input type="radio" name="gender">Male
+                <input type="radio" name="gender">Female
+            </div>
+            <div>
+                <p>Please select the check box</p><span class="error" id="spancheck"></span>
+                <input type="checkbox" name="color"> Red
+                <input type="checkbox" name="color"> Blue
+                <input type="checkbox" name="color"> Green
+                <input type="checkbox" name="color"> Black
+
+            </div>
+
+            <div>
+                <textarea name="area" id="textarea" cols="30" rows="5"></textarea><span class="error" id="spanarea"></span>
+
+            </div>
+            <input type="submit" value="submit" id="submitbtn">
+
+        </form>
+
+    </center>
+    </div>
+    <script>
+        const form = document.querySelector('#myForm');
+        const submitbtn = document.querySelector('#submitbtn');
+
+        // Adding the eventlistner
+        form.addEventListener('submit', (event) => {
+            // Validating for the name
+            let name = document.getElementById('name').value;
+            if (name.length == 0) {
+                document.getElementById('namespan').innerHTML = '*Please enter the name';
+                event.preventDefault();
+            } else if (name.match(/[0-9]/)) {
+                document.getElementById('namespan').innerHTML = '*Name should not contain numbers';
+                event.preventDefault();
+            } else {
+                document.getElementById('namespan').innerHTML = '';
+            }
+
+
+            // Validating for the passwords
+            let password = document.getElementById('pass').value;
+            var regex = /^[0-9a-zA-Z]+$/;
+            if (password.length == 0) {
+                document.getElementById('passspan').innerHTML = '*Please enter the password';
+                event.preventDefault();
+            }
+            else if (password.length < 5) {
+                document.getElementById('passspan').innerHTML = '*Password length is too short';
+                event.preventDefault();
+            }
+            else if (!(regex.test(password))) {
+                document.getElementById('passspan').innerHTML = '*Password is not alphanumeric';
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('passspan').innerHTML = "";
+            }
+
+
+            // Validating for the Confirm Password
+            var cpassword = document.getElementById('cpass').value;
+            if (cpassword == 0) {
+                document.getElementById('spancpass').innerHTML = '*Please type the confirm password';
+                event.preventDefault();
+            }
+            else if (cpassword != password) {
+                document.getElementById('spancpass').innerHTML = '*Password and confirm password are not matching';
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('spancpass').innerHTML = "";
+            }
+            // Validating the email
+            var email = document.getElementById('email').value;
+            if (email.length == 0) {
+                document.getElementById('spanemail').innerHTML = '*Please enter the email address';
+                event.preventDefault();
+            }
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('spanemail').innerHTML = '*Please enter the correct email address';
+                event.preventDefault();
+
+            }
+            else {
+                document.getElementById('spanemail').innerHTML = "";
+            }
+
+            // Validating for the pin code
+            var pincode = document.getElementById('picode').value;
+            if (pincode.length == 0) {
+                document.getElementById('spanpicode').innerHTML = "*Please enter the pin code";
+                event.preventDefault();
+            }
+            else if (pincode.length < 6) {
+                document.getElementById('spanpicode').innerHTML = "*Pin Code is too short";
+                event.preventDefault();
+            }
+            else if (pincode.length > 6) {
+                document.getElementById('spanpicode').innerHTML = "*Pin Code is too long";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('spanpicode').innerHTML = "";
+
+            }
+
+            // Validation for the radio button
+            var radio = document.querySelector('input[name="gender"]:checked');
+            if (radio == null) {
+                document.getElementById('spanradio').innerHTML = "*Please select the radio button";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('spanradio').innerHTML = "";
+            }
+
+            // Validating for the check box button
+            var check = document.querySelector('input[name="color"]:checked');
+            if (check == null) {
+                document.getElementById('spancheck').innerHTML = "*Please select the check box";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('spancheck').innerHTML = "";
+            }
+
+            // Validating for the textarea
+            var textarea = document.getElementById('textarea').value;
+            if (textarea.length == 0) {
+                document.getElementById('spanarea').innerHTML = "*Please write in the text area";
+                event.preventDefault();
+            }
+            else if (textarea.length < 10) {
+                document.getElementById('spanarea').innerHTML = "*Atleast write ten characters in the text area";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('spanarea').innerHTML = "";
+            }
+
+
+
+
+
+
+
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>
